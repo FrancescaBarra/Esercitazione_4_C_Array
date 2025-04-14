@@ -4,20 +4,23 @@ using namespace std;
 
 int main()
 {
-	string filePath = "data.txt";
+	string inputFilePath = "data.txt";
+	string outputFilePath = "result.txt";
 	size_t n;
-	double* w;
-	double* r;
-	unsigned int S;
+	double *w = nullptr;
+	double *r = nullptr;
+	double S = 0;
 	
-	if (ImportVectors(filePath, n, w, r, S))
-	{
-		cout << "S = " << S << ", n = " << n << endl;
-		cout << "w = [";
-		cout << "r = [";
-    }
+	ImportVectors(inputFilePath, n, w, r, S);
+	
+	double prodotto = DotProduct(n, w, r);
+	double V = ValuePortfolio(n, S, w, r);
+	
+	ExportResult(outputFilePath, n, w, r, S, V, prodotto);
+	
 	delete[] w;
-    delete[] r;
+	delete[] r;
+	
     return 0;
 }
 
